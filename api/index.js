@@ -2,6 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("../routes/auth");
+const todoRoutes = require("../routes/todo");
 require("dotenv").config();
 
 const app = express();
@@ -32,6 +33,9 @@ app.post("/api/echo", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+
+
+app.use("/api/todos", todoRoutes);
 
 
 module.exports = app;
