@@ -1,6 +1,7 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const authRoutes = require("../routes/auth");
 require("dotenv").config();
 
 const app = express();
@@ -29,6 +30,8 @@ app.get("/", (req, res) => {
 app.post("/api/echo", (req, res) => {
   res.status(200).json({ youSent: req.body });
 });
+
+app.use("/api/auth", authRoutes);
 
 
 module.exports = app;
