@@ -24,8 +24,10 @@ router.post("/register", async (req, res) => {
     const token = jwt.sign({ id: newUser._id }, JWT_SECRET, { expiresIn: "1d" });
     res.status(201).json({ token, user: { id: newUser._id, username, email } });
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
-  }
+  console.error("Registration error:", error.message);
+  res.status(500).json({ error: "Server error", details: error.message });
+}
+
 });
 
 // Login
@@ -43,9 +45,11 @@ router.post("/login", async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1d" });
     res.json({ token, user: { id: user._id, username: user.username, email: user.email } });
-  } catch (error) {
-    res.status(500).json({ error: "Server error" });
-  }
+  }  catch (error) {
+  console.error("Login error:", error.message);
+  res.status(500).json({ error: "Server error", details: error.message });
+}
+
 });
 
 module.exports = router;
