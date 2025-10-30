@@ -24,6 +24,8 @@ export const sendOTP = async (req, res) => {
   }
 };
 
+
+
 // Step 2: Verify OTP
 export const verifyOTP = async (req, res) => {
   try {
