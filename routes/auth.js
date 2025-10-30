@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+import { sendOTP, verifyOTP } from "../controllers/authController.js";
 const router = express.Router();
 
 const JWT_SECRET = process.env.JWT_SECRET || "e7c0607a49a80dfe7ed9ff3bb45a4253e66f190de5af2563055ae83f6539c93d";
@@ -51,5 +52,8 @@ router.post("/login", async (req, res) => {
 }
 
 });
+
+router.post("/send-otp", sendOTP);
+router.post("/verify-otp", verifyOTP);
 
 module.exports = router;
